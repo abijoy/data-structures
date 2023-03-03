@@ -1,2 +1,2 @@
 # data-structures
-Refreshing basic data structures knowledge
+Refreshing basic data structures knowledge.
