@@ -1,3 +1,5 @@
+import time
+
 # node class
 class Node:
     def __init__(self, data):
@@ -11,6 +13,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    # complexity: O(n)
     def append(self, data):
         new_node = Node(data)
         if self.head == None:
@@ -21,6 +24,7 @@ class LinkedList:
             last_node = last_node.next
         last_node.next = new_node
 
+    # Complexity: O(1)
     def prepend(self, data):
         new_node = Node(data)
         if self.head == None:
@@ -30,6 +34,7 @@ class LinkedList:
         self.head = new_node
         self.head.next = tmp_node
 
+    # Complexity: O(n)
     def delete_node(self, key):
         curr_node = self.head
         # key is at the begining 
@@ -51,6 +56,7 @@ class LinkedList:
         prev_node.next = curr_node.next
         curr_node = None 
 
+    # Complexity: O(n)
     def delete_node_pos(self, pos):
         curr_node = self.head
         # first position
@@ -67,6 +73,31 @@ class LinkedList:
 
         prev_node.next = curr_node.next
         curr_node = None
+    
+
+    # Time: O(n) Memory: O(1)
+    def reverse_iterative(self):
+        prev_node = None
+        curr_node = self.head
+
+        while curr_node: 
+            tmp = curr_node.next
+            curr_node.next = prev_node
+            prev_node = curr_node
+            curr_node = tmp
+        self.head = prev_node
+
+    def reverse_recursion(self, head):
+        if not head:
+            return None
+        new_head = head
+        if head.next:
+            new_head = self.reverse_recursion(head.next)
+            head.next.next = head
+        head.next = None
+
+        return new_head
+        
 
     def printList(self):
         curr_node = self.head
@@ -88,4 +119,8 @@ if __name__ == '__main__':
 
     llist.printList()
     llist.delete_node_pos(5)
+    llist.printList()
+    # llist.reverse_iterative()
+
+    llist.head = llist.reverse_recursion(llist.head) # set new head after reversing ll using recursion
     llist.printList()
