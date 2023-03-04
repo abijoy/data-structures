@@ -51,6 +51,23 @@ class LinkedList:
         prev_node.next = curr_node.next
         curr_node = None 
 
+    def delete_node_pos(self, pos):
+        curr_node = self.head
+        # first position
+        if pos == 0:
+            self.head = self.head.next
+            return
+        # position at any point
+        prev_node = None
+        i = 0
+        for i in range(pos):
+            prev_node = curr_node
+            curr_node = curr_node.next
+            # print(f'prev -> {prev_node.data} curr -> {curr_node.data}')
+
+        prev_node.next = curr_node.next
+        curr_node = None
+
     def printList(self):
         curr_node = self.head
         while curr_node:
@@ -70,5 +87,5 @@ if __name__ == '__main__':
     llist.append(6)
 
     llist.printList()
-    llist.delete_node(6)
+    llist.delete_node_pos(5)
     llist.printList()
