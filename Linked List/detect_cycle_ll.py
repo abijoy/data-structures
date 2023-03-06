@@ -14,6 +14,8 @@ def detect_cycle_ll(head: Node) -> bool:
 
 # Time --> O(n)  Space --> O(1)
 def detect_cycle_ll_runner_walker(head: Node) -> bool:
+    if head == None:
+        return False
     walker = head
     runner = head 
 
